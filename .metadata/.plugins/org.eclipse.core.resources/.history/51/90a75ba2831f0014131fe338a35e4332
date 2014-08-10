@@ -1,4 +1,0 @@
-package com.test.app.b;
-public class GameLogo  extends CCColorLayer {
-	
-}

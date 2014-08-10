@@ -1,7 +1,0 @@
-package com.test.app.b;
-
-import org.cocos2d.layers.CCColorLayer;
-
-public class GameLogo extends CCColorLayer {
-	
-}
