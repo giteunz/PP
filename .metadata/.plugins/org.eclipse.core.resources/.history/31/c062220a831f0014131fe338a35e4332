@@ -1,0 +1,78 @@
+package com.test.app.b;
+
+import org.cocos2d.nodes.CCDirector;
+import org.cocos2d.opengl.CCGLSurfaceView;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+
+public class MainActivity extends Activity {
+
+	protected CCGLSurfaceView _glSurfaceView;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
+		Log.d("yyyy", "11111111111");
+		_glSurfaceView = new CCGLSurfaceView(this);
+		Log.d("yyyy", "22222222222");
+		setContentView(_glSurfaceView);
+		Log.d("yyyy", "33333333333");
+		//setContentView(R.layout.activity_main);
+	}
+	
+	@Override
+	protected void onStart()
+	{			
+		super.onStart();
+		Log.d("yyyy", "4");
+		CCDirector.sharedDirector().attachInView(_glSurfaceView);			
+		CCDirector.sharedDirector().setDeviceOrientation(CCDirector.kCCDeviceOrientationLandscapeLeft);			
+		CCDirector.sharedDirector().setDisplayFPS(true);			
+		CCDirector.sharedDirector().setAnimationInterval(1.0f / 60.0f);
+		Log.d("yyyy", "5");
+	}
+	
+	@Override
+	protected void onPause()
+	{
+		Log.d("yyyy", "6");
+		super.onPause();			
+		CCDirector.sharedDirector().pause();
+		Log.d("yyyy", "7");
+	}
+
+	@Override
+	protected void onResume()
+	{
+		Log.d("yyyy", "8");
+		super.onResume();			
+		CCDirector.sharedDirector().resume();
+		Log.d("yyyy", "9");
+	}
+
+	@Override
+	protected void onStop()
+	{
+		Log.d("yyyy", "10");
+		super.onStop();			
+		CCDirector.sharedDirector().end();
+		Log.d("yyyy", "11");
+
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();			
+		CCDirector.sharedDirector().end();
+	}
+}
